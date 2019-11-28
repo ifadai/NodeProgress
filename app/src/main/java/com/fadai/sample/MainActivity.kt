@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
         btn_reset.setOnClickListener {
             npb.reset()
         }
