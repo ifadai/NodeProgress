@@ -1,16 +1,11 @@
-package com.gz.goodneighbor.widget.progress
+package com.fadai.nodeprogress
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.R.attr.path
 import android.animation.ValueAnimator
-import android.content.pm.PackageInstaller.STATUS_FAILURE
-import android.content.pm.PackageInstaller.STATUS_SUCCESS
 import android.graphics.*
 import android.util.Log
-import com.fadai.nodeprogress.R
-import com.fadai.nodeprogress.SizeUtils
 import java.util.ArrayList
 
 
