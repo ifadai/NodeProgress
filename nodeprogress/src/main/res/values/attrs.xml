@@ -3,12 +3,19 @@
 
     <!--节点进度-->
     <declare-styleable name="NodeProgressBar">
+        <!--圆圈宽度-->
         <attr name="np_circleWidth" format="dimension" />
+        <!--背景条颜色-->
         <attr name="np_backgroundBarColor" format="color" />
+        <!--进度条高度-->
         <attr name="np_progressHeight" format="dimension" />
+        <!--进度条颜色-->
         <attr name="np_progressColor" format="color" />
+        <!--每条横线的动画时间-->
         <attr name="np_lineAnimDuration" format="integer" />
+        <!--每个圆圈的动画时间-->
         <attr name="np_circleAnimDuration" format="integer" />
+        <!--圆圈内容的动画时间-->
         <attr name="np_circleContentAnimDuration" format="integer" />
     </declare-styleable>
 </resources>

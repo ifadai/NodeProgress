@@ -1,4 +1,4 @@
-package com.fadai.nodeprogress
+package com.gz.goodneighbor.widget.progress
 
 import android.content.Context
 import android.util.AttributeSet
@@ -9,7 +9,9 @@ import android.content.pm.PackageInstaller.STATUS_FAILURE
 import android.content.pm.PackageInstaller.STATUS_SUCCESS
 import android.graphics.*
 import android.util.Log
-import java.util.*
+import com.fadai.nodeprogress.R
+import com.fadai.nodeprogress.SizeUtils
+import java.util.ArrayList
 
 
 /**
@@ -18,13 +20,12 @@ import java.util.*
  * 邮箱：i_fadai@163.com
  */
 class NodeProgressBar : View {
-
     val TAG = javaClass.simpleName
 
     // 是否需要重新配置路径
     var mNeedResetPath = true
 
-    // 圆圈半径
+    // 圆圈半
     var circleWidth = SizeUtils.dp2px(context, 20F)
         set(value) {
             field = value
@@ -274,7 +275,7 @@ class NodeProgressBar : View {
             mAnimatorCircleContentList.add(circleContentAnimator)
         }
 
-        // 最后一段横线动画，单独处理 
+        // 最后一段横线动画，单独处理
         mAnimatorEnd = ValueAnimator.ofFloat(0F, 1F).setDuration(lineProgressTime)
         mAnimatorEnd?.addUpdateListener {
             if (mNode == mCount) { // 如果当前节点超过最后一个节点
@@ -301,16 +302,20 @@ class NodeProgressBar : View {
      */
     private fun drawBg(canvas: Canvas) {
         // 如果路径的数量等于节点数量，则初始化路径
-        if (mLinePathList.size != mCount
-                || mCirclePathList.size != mCount
-                || mCircleContentPathList.size != mCount
-                || mCircleContentTruePathList.size != mCount
-                || mCircleContentFalsePathList.size != mCount
-                || mNeedResetPath) {
+        if (isDataAbnormal()) {
             mNeedResetPath = false
             initPath()
         }
         canvas.drawPath(mBgPath, mBgPaint)
+    }
+
+    private fun isDataAbnormal(): Boolean {
+        return (mLinePathList.size != mCount
+                || mCirclePathList.size != mCount
+                || mCircleContentPathList.size != mCount
+                || mCircleContentTruePathList.size != mCount
+                || mCircleContentFalsePathList.size != mCount
+                || mNeedResetPath)
     }
 
     /**
@@ -597,7 +602,7 @@ class NodeProgressBar : View {
      * 设置请求状态
      */
     fun setRequestStatus(isSuccess: Boolean, index: Int) {
-        if (index < mCount) {
+        if (!isDataAbnormal() && index < mCount) {
             if (isSuccess) {
                 mCircleContentPathList[index] = mCircleContentTruePathList[index]
                 mRequestStatusList[index] = REQUEST_STATUS_SUCCESS
